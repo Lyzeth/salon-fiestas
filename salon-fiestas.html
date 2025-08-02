@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        body {
+            background-color: purple;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            background-color: skyblue;
+            border-collapse: collapse;
+        }
+
+        td {
+            vertical-align: top;
+            padding: 15px;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], select {
+            padding: 5px;
+            margin: 5px 0;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: white;
+        }
+
+        marquee img {
+            margin: 0 10px;
+        }
+
+        .titulo-seccion {
+            font-size: 20px;
+            font-weight: bold;
+            color: purple;
+            font-family: 'Arial Black';
+        }
+
+        .aviso {
+            font-size: 14px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .nota {
+            font-size: 13px;
+            font-style: italic;
+            color: #222;
+            text-align: center;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body bgcolor="purple">
+    <br>
+    <hr color="white" size="3">
+    <center>
+    <table width="80%" bgcolor="skyblue">
+    <tr align="center">
+    <td width="30%">
+        <img src="imagenes/salonlogo.png" width="80%">
+        <font color="purple" face="arial black" size="3">
+            Cumpleaños - Bautizos - Primeras comuniones - Graduaciones - Posadas
+        </font><br>
+        <marquee bgcolor="skyblue">
+            <img src="imagenes/party.png" width="10%">
+            <img src="imagenes/party.png" width="10%">
+            <img src="imagenes/party.png" width="10%">
+            <img src="imagenes/party.png" width="10%">
+        </marquee>
+    </td>
+    <td width="70%">
+        <img src="imagenes/salonfiestas.jpg" width="95%">
+    </td>
+    </tr>
+    </table>
+    <hr color="white" size="3">
+    <br>
+
+    <form name="salondefiestas">
+        <table width="80%" bgcolor="skyblue">
+            <tr>
+            <td width="30%">
+                <front color="purple" face="arial black" size="4">DATOS DEL CLIENTE</front><br>
+                <hr size="2">
+                <front color="black" face="arial" size="4">NOMBRE: </front>
+                <input type="text" name="nombre" size="30"><br>
+                <front color="black" face="arial" size="4">TELÉFONO: </front>
+                <input type="text" name="telefono" size="15"><br>
+                <hr>
+                
+                <front color="purple" face="arial black" size="4">NÚMERO DE INVITADOS</front><br>
+                <select name="numinv" onchange="calcularCotizacion();">
+                    <option value="40">40 personas</option>
+                    <option value="60">60 personas</option>
+                    <option value="80">80 personas</option>
+                    <option value="100">100 personas</option>
+                    <option value="120">120 personas</option>
+                </select><br>
+                <hr>
+
+                <front color="purple" face="arial black" size="4">FECHA DEL EVENTO</front><br>
+                <input type="date" name="fechev" min="2024-01-01" max="2024-12-31" onchange="calcularCotizacion();"><br>
+                <hr>
+
+                <front color="purple" face="arial black" size="4">HORARIO DEL EVENTO</front><br>
+                <input type="time" name="horhev" value="13:00" min="13:00" max="21:00" step="3600" onchange="calcularCotizacion();"><br>
+                <hr>
+
+                <b><front face="arial">
+                    De lunes a jueves se otorga un 20% de descuento.<br>
+                    Horarios después de las 4:00 pm aumentan un 15%.<br>
+                    <u>AGENDA 2024</u>
+                </front></b>
+            </td>
+
+            <td width="30%">
+                <front color="purple" face="arial black" size="4">TIPO DE ALIMENTO</front>
+                <hr>
+                <input type="radio" name="cotind" value="25" onclick="calcularCotizacion();"> Taquitos al vapor 25.00<br>
+                <input type="radio" name="cotind" value="30" onclick="calcularCotizacion();"> Hotdog 30.00<br>
+                <input type="radio" name="cotind" value="35" onclick="calcularCotizacion();"> Chilidog 35.00<br>
+                <input type="radio" name="cotind" value="35" onclick="calcularCotizacion();"> Marinitas 35.00<br>
+                <input type="radio" name="cotind" value="40" onclick="calcularCotizacion();"> Hamburguesas 40.00<br><br>
+
+                <center><b>
+                <front color="red" face="arial" size="4">
+                    En cualquier evento se prohíbe el consumo de bebidas alcohólicas y humo de cigarro
+                </front></b><br><hr>
+                <b><front face="arial">
+                    El cálculo de alimentación es por persona. Incluye solo agua de sabores.
+                </front></b>
+                </center>
+            </td>
+
+            <td width="30%">
+                <front color="purple" face="arial black" size="3">SERVICIOS EXTRAS</front><br>
+                <hr>
+                <front color="purple" face="arial black" size="3">
+                    La renta del salón de fiestas incluye servicio de invitaciones, botana, aguas frescas y anfitriones.
+                </front><br><br>
+                <input type="checkbox" name="extra1" value="500" onclick="calcularCotizacion();"> Botargas 500.00<br>
+                <input type="checkbox" name="extra2" value="1000" onclick="calcularCotizacion();"> Show infantil (temático) 1000.00<br>
+                <input type="checkbox" name="extra3" value="500" onclick="calcularCotizacion();"> Piñata 500.00<br>
+                <input type="checkbox" name="extra4" value="20" onclick="calcularCotizacion();"> Bolsitas de dulces 20.00 p/p<br>
+                <input type="checkbox" name="extra5" value="20" onclick="calcularCotizacion();"> Refrescos 20.00 p/p<br>
+                <input type="checkbox" name="extra6" value="10" onclick="calcularCotizacion();"> Pastel 10.00 p/p<br>
+                <br>
+                <hr>
+                <b><front face="arial">
+                    Los costos de refresco, pastel y bolsitas se calculan de acuerdo al número de personas.
+                </front></b>
+            </td>
+            </tr>
+        </table>
+        <br>
+        
+        <input type="text" name="totcot" readonly>
+
+    </form>
+    <br>
+    <hr color="white" size="3">
+    </center>
+
+    <script>
+        function calcularCotizacion() {
+        const form = document.forms["salondefiestas"];
+        const numInvitados = parseInt(form.numinv.value);
+
+        // ALIMENTO
+            let precioAlimento = 0;
+            const alimentos = form.cotind;
+            for (let i = 0; i < alimentos.length; i++) {
+            if (alimentos[i].checked) {
+            precioAlimento = parseFloat(alimentos[i].value);
+            break;
+            }
+            }
+
+            let totalAlimento = precioAlimento * numInvitados;
+
+        // EXTRAS
+            let totalExtras = 0;
+
+            const extrasFijos = ["extra1", "extra2", "extra3"];
+            for (let extra of extrasFijos) {
+            if (form[extra].checked) {
+            totalExtras += parseFloat(form[extra].value);
+            }
+            }
+
+            const extrasPorPersona = ["extra4", "extra5", "extra6"];
+            for (let extra of extrasPorPersona) {
+            if (form[extra].checked) {
+            totalExtras += parseFloat(form[extra].value) * numInvitados;
+            }
+            }
+
+        // DESCUENTOS Y RECARGOS
+            const fecha = new Date(form.fechev.value);
+            const dia = fecha.getDay(); // 0=Dom, 1=Lun, ..., 6=Sáb
+            let descuento = 0;
+            if (dia >= 1 && dia <= 4) {
+            descuento = 0.20;
+            }
+
+            const hora = form.horhev.value;
+            let recargo = 0;
+            if (hora >= "16:00") {
+            recargo = 0.15;
+            }
+
+            let subtotal = totalAlimento + totalExtras;
+            let totalConRecargo = subtotal * (1 + recargo);
+            let totalFinal = totalConRecargo * (1 - descuento);
+
+        // Mostrar total
+            form.totcot.value = "$" + totalFinal.toFixed(2);
+            }
+    </script>
+</body>
+</html>
